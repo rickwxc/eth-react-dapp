@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import web3 from './web3obj';
 import { Header, Table, Input , Button, Label} from 'semantic-ui-react'
 
-import ens from './smcs/ens';
 import {namehash} from './utils'
-import auction from './old/registrars/auction';
-import deed from './old/registrars/deed';
+import auction from './registrars/auction';
+import deed from './registrars/deed';
 import { List } from 'semantic-ui-react'
 
 
@@ -40,10 +39,8 @@ class Auction  extends Component {
 			reg: false,
 		};
 
-		var e = web3.eth.contract(ens['abi']).at(ens['addrs'][props.network_id]);
-
 		var this_c = this
-		e.owner(namehash('eth'),function(e,r){
+		props.ens.owner(namehash('eth'),function(e,r){
 			this_c.setState({reg:web3.eth.contract(auction['abi']).at(r)})
 		})
 
@@ -78,8 +75,8 @@ class Auction  extends Component {
 					this_com.load_soft_date();
 				}
 
-				var dt = new Date(r[2].toNumber() * 1000);
-				this_com.setState({'auction_end_time': dt.toString()});
+					var dt = new Date(r[2].toNumber() * 1000);
+					this_com.setState({'auction_end_time': dt.toString()});
 				if(ast_id == 1){
 				}
 				var winning_bid = web3.fromWei(r[4], 'ether');
@@ -267,4 +264,5 @@ class Auction  extends Component {
 }
 
 export default Auction;
+
 

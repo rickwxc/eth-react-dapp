@@ -66,15 +66,14 @@ class Test  extends Component {
 				<Table.Body>
 						<Table.Row>
         <Table.Cell >
-				  <Input labelPosition='right' type='text' placeholder=''>
+				  <Input type='text' placeholder=''>
 				  <input value={this_state['domain']} onChange={(text) => this_com.update_inputs('domain', text)} />
-				  <Label>.test</Label>
 				  </Input>
 			  <br />
 			  <Button onClick={(e) => this.call_fun('check', e)}>Query</Button>
 			  </Table.Cell>
 			  <Table.Cell>
-			  {this.state.domain}.test
+			  {this.state.domain}
 			  <br />
 			  {this.state.check}
 			  </Table.Cell>

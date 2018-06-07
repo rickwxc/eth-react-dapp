@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Header, Table } from 'semantic-ui-react'
 import web3 from './web3obj';
-//import myens from './myens';
-//import registrars from './registrars/setup';
-import Registrars from './registrars';
+import Node from './node';
+import Ens from './ens';
+import AuctionRegistrar from './registrar';
+import FifsRegistrar from './fifs_registrar';
+import Auctionold from './auction'; 
 import { Grid } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
@@ -12,6 +14,7 @@ class App extends Component {
 		super(props);
 		this.state = {
 			network_id: false,
+			network: '',
 			isConnected: (web3.isConnected()? 'Yes':'No'),
 			isMetaMask: (web3.currentProvider.isMetaMask? 'Yes':'No')
 		};
@@ -21,7 +24,13 @@ class App extends Component {
 		if (web3.currentProvider.isMetaMask){
 			web3.version.getNetwork((err, netId) => {
 				this.setState({network_id : netId});
-				//registrars.init(netId);
+				if(netId == 1) {
+					this.setState({network : 'MAIN NET'});
+				}else if(netId == 3){
+					this.setState({network : 'Ropsten'});
+				}else if(netId == 4){
+					this.setState({network : 'Rinkeby'});
+				} 
 			})
 		}else{
 
@@ -41,7 +50,16 @@ class App extends Component {
 			return (
 				<Grid columns='equal'>
 				<Grid.Column>
-				<Registrars network_id={this.state.network_id}/>
+				Network: {this.state.network} 
+				<br />
+					<Node />
+					<Ens network_id={this.state.network_id} />
+					<AuctionRegistrar t0='eth'  network_id={this.state.network_id} />
+
+				<Auctionold  network_id={this.state.network_id} />
+
+					<FifsRegistrar t0='test'  network_id={this.state.network_id} />
+
 				</Grid.Column>
 				</Grid>
 			);
