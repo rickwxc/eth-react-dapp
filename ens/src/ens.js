@@ -16,6 +16,7 @@ class Ens extends Component {
 
 		this.state = {
 			domain: 'internet.eth',
+			ens_addr: ens['addrs'][props.network_id],
 			owner: '',
 			resolver: '',
 			rev_addr: '',
@@ -23,7 +24,9 @@ class Ens extends Component {
 			rev: false,
 			ens: e,
 		};
-		
+
+		//e.setOwner('rkb', '0x20b84868f1ddcd3a35cbb9e21c7b28e73028a0e0', (e, r) => { })
+		//0x724e1d1a634091f3abd7eaf39b8d82750a37c1a074372437bfa21db88593c15e
 
 	}
 	update_inputs(idx, e) {
@@ -66,6 +69,10 @@ class Ens extends Component {
 			var this_state = this.state;
     return (
       <div >
+		<h2>
+		Ens: {this.state.ens_addr}
+		</h2>
+
 		<Input defaultValue={this_state.domain}
 		onChange={(text) => this_com.update_inputs('domain', text)}
 		/>

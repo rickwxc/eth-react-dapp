@@ -3,12 +3,20 @@ import { Header, Table } from 'semantic-ui-react'
 import web3 from './web3obj';
 import Node from './node';
 import Ens from './ens';
-import AuctionRegistrar from './registrar';
+import AuctionRegistrar from './auction_registrar';
 import FifsRegistrar from './fifs_registrar';
-import Auctionold from './auction'; 
+import AuctionTopLevel from './ens_top_level_domain_auction'; 
+import BetterAuctionFactory from './better_auction_factory'; 
 import { Grid } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
+/*
+ *
+					<FifsRegistrar t0='test'  network_id={this.state.network_id} />
+					<AuctionRegistrar t0='eth'  network_id={this.state.network_id} />
+					<AuctionTopLevel  network_id={this.state.network_id} />
+ * */
+//
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -32,6 +40,12 @@ class App extends Component {
 					this.setState({network : 'Rinkeby'});
 				} 
 			})
+
+
+
+
+
+
 		}else{
 
 		}
@@ -54,11 +68,8 @@ class App extends Component {
 				<br />
 					<Node />
 					<Ens network_id={this.state.network_id} />
-					<AuctionRegistrar t0='eth'  network_id={this.state.network_id} />
 
-				<Auctionold  network_id={this.state.network_id} />
-
-					<FifsRegistrar t0='test'  network_id={this.state.network_id} />
+					<BetterAuctionFactory network_id={this.state.network_id}  t0='eth' />
 
 				</Grid.Column>
 				</Grid>

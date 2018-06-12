@@ -177,6 +177,8 @@ const c = {
 	addrs: {
 		1:'0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef',
 		3:'0xc19fd9004b5c9789391679de6d766b981db94610',
+		4:'0x20B84868f1DDcD3a35cbb9E21c7b28e73028a0e0',//rick deloyed on rinkeby //rkb
+		//rkb 0x20B84868f1DDcD3a35cbb9E21c7b28e73028a0e0
 	}
 }
 export default c;
