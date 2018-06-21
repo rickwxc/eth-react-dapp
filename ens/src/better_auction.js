@@ -16,6 +16,7 @@ class Reg extends Component {
 		this.state = {
 			ba: ba,
 			activated:'',
+			trans:'',
 
 			domain: 'myname',
 			reg_addr: ba.address,
@@ -46,12 +47,42 @@ class Reg extends Component {
 			this.state.ba.ENSName((e, r)=>{
 				this_com.setState({ENSName:r});
 			});
-		
 		}
 
 		if(name == 'activated'){
 			this.state.ba.activated((e, r)=>{
 				this_com.setState({activated:(r? 'Y':'N')});
+			});
+		}
+
+		if(name == 'activate'){
+			this.state.ba.activate({from:web3.eth.accounts[0] }, (e, r)=>{
+				this_com.setState({trans:r});
+			});
+		}
+
+		if(name == 'beneficiaryCloseAuction'){
+			this.state.ba.beneficiaryCloseAuction({from:web3.eth.accounts[0] }, (e, r)=>{
+				this_com.setState({trans:r});
+			});
+		}
+
+		if(name == 'beneficiaryRecoverFunds'){
+			this.state.ba.beneficiaryRecoverFunds({from:web3.eth.accounts[0] }, (e, r)=>{
+				this_com.setState({trans:r});
+			});
+		}
+
+		if(name == 'nonHighestBidderRefund'){
+			this.state.ba.nonHighestBidderRefund({from:web3.eth.accounts[0] }, (e, r)=>{
+				this_com.setState({trans:r});
+			});
+		}
+
+
+		if(name == 'bidderPlaceBid'){
+			this.state.ba.bidderPlaceBid({from:web3.eth.accounts[0] }, (e, r)=>{
+				this_com.setState({trans:r});
 			});
 		}
 
@@ -147,7 +178,7 @@ class Reg extends Component {
 					{this.state.ENSName}
 				</Table.Cell>
 				<Table.Cell >
-		<Button  onClick={(e) => this.call_fun('activated', e)}>activated</Button>
+		<Button  onClick={(e) => this.call_fun('activated', e)}>Been activated?</Button>
 				</Table.Cell>
 				<Table.Cell >
 					{this.state.activated}
@@ -233,6 +264,37 @@ class Reg extends Component {
 					{this.state.bidder_amount}
 				</Table.Cell>
 			</Table.Row>
+
+			<Table.Row>
+				<Table.Cell >
+			
+		<Button  primary onClick={(e) => this.call_fun('activate', e)}>activate</Button>
+				</Table.Cell>
+				<Table.Cell >
+		<Button primary  onClick={(e) => this.call_fun('beneficiaryCloseAuction', e)}>beneficiaryCloseAuction</Button>
+				</Table.Cell>
+				<Table.Cell >
+		<Button  primary onClick={(e) => this.call_fun('beneficiaryRecoverFunds', e)}>beneficiaryRecoverFunds</Button>
+
+				</Table.Cell>
+				<Table.Cell >
+		<Button  primary onClick={(e) => this.call_fun('nonHighestBidderRefund', e)}>nonHighestBidderRefund</Button>
+				</Table.Cell>
+			</Table.Row>
+			<Table.Row>
+				<Table.Cell colspan="4">
+		<Button primary  onClick={(e) => this.call_fun('bidderPlaceBid', e)}>bidderPlaceBid</Button>
+				</Table.Cell>
+			</Table.Row>
+			<Table.Row>
+				<Table.Cell colspan="4">
+				Transaction Hash: {this.state.trans}
+				</Table.Cell>
+			</Table.Row>
+
+
+
+
 
 
 		</Table.Body>
