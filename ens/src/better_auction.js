@@ -166,7 +166,7 @@ class Reg extends Component {
 	  }
     return (
       <div >
-		<h3> Better A at {this.state.reg_addr}</h3>
+		<h3> Better Auction at {this.state.reg_addr}</h3>
 
 	<Table>
 		<Table.Body>
