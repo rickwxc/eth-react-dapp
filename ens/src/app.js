@@ -33,18 +33,13 @@ class App extends Component {
 			web3.version.getNetwork((err, netId) => {
 				this.setState({network_id : netId});
 				if(netId == 1) {
-					this.setState({network : 'MAIN NET'});
+					this.setState({network : 'MAIN NET or private network'});
 				}else if(netId == 3){
 					this.setState({network : 'Ropsten'});
 				}else if(netId == 4){
 					this.setState({network : 'Rinkeby'});
 				} 
 			})
-
-
-
-
-
 
 		}else{
 
